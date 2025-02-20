@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 //middlewares
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://cookies1.netlify.app",
     credentials: true
 }));
 app.use(express.json())
@@ -17,7 +17,10 @@ app.use(cookieParser())
 //set cookie
 app.get("/set-cookie", (req,res)=>{
     res.cookie("sampleCookie","12345", {
-        maxAge: 230000
+        maxAge: 230000,
+        httpOnly: true,
+        secure: true, 
+        sameSite: "None" 
     })
     res.json({ message: "Cookie has been set!" });
 })
